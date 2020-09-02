@@ -1,0 +1,10 @@
+FROM centos
+RUN yum -y install httpd unzip
+ENV HTML project-html-website
+LABEL maintainer = Jason
+LABEL vendor = JS SOFT TECH
+LABEL random = yay
+WORKDIR /var/www/html/
+ADD https://github.com/microsoft/$HTML/archive/master.zip ./code.zip
+RUN unzip code.zip && $HTML-master/index.html .
+CMD apachectl -DFOREGROUND

@@ -1,0 +1,5 @@
+FROM centos
+ENV var 1243
+RUN yum -y install httpd
+
+CMD apachectl -DFOREGROUND

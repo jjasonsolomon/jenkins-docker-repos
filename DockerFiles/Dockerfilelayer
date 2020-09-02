@@ -1,0 +1,6 @@
+FROM nginx:alpine
+ENV web /usr/share/nginx/html/test.html
+RUN echo "1" >> $web && \
+
+echo "2" >> $web
+CMD apachectl -DFOREGROUND

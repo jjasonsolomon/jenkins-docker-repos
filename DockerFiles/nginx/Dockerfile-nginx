@@ -1,0 +1,18 @@
+FROM  centos:7.6.1810
+COPY conf/nginx.repo /etc/yum.repos.d/nginx.repo
+
+RUN \
+yum install -y nginx && \
+yum install -y https://centos7.iuscommunity.org/ius-release.rpm  && \
+yum -y install \
+php72u-fpm \
+php72u-common \
+php72u-cli --enablerepo=ius && yum clean all
+RUN mkdir /nginx_php
+COPY conf/nginx.conf /etc/nginx/conf.d/defualt.conf
+COPY fruit nginx_php/
+RUN chmod 777 nginx_php/*
+COPY conf/start.sh start.sh
+RUN chmod +x start.sh
+CMD /start.sh
+

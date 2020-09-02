@@ -1,0 +1,7 @@
+FROM centos
+RUN yum -y install httpd unzip
+ENV HTML project-html-website
+WORKDIR /var/www/html
+ADD https://github.com/microsoft/$HTML/archive/master.zip ./code.zip
+RUN unzip ./code.zip && mv ./$HTML-master/* ./
+CMD apachectl -DFOREGROUND
